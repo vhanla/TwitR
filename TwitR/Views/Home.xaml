@@ -1,0 +1,44 @@
+﻿<Page
+    x:Class="TwitR.Home"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TwitR"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" >
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+        <NavigationView x:Name="navView" Loaded="navView_Loaded" ItemInvoked="navView_ItemInvoked" OpenPaneLength="150" Visibility="Visible" AlwaysShowHeader="True">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Street" x:Name="iHome" Content="Home" Tag="home"/>
+                <NavigationViewItem Icon="Globe" Content="Explore" Tag="explore"/>
+                <NavigationViewItemSeparator/>
+                <NavigationViewItem Icon="Contact" Content="Profile" Tag="profile"/>
+                <NavigationViewItem Icon="Memo" Content="Notifications" Tag="notifications"/>
+                <NavigationViewItem Icon="Mail" Content="Messages" Tag="messages"/>
+                <NavigationViewItem Icon="AllApps" Content="Lists" Tag="lists"/>
+                <NavigationViewItemSeparator/>
+                <NavigationViewItem Content="Tweet" Tag="tweet" >
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE206;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+
+            <NavigationView.AutoSuggestBox>
+                <AutoSuggestBox x:Name="ASB" PlaceholderText="" QueryIcon="Find" QuerySubmitted="ASB_QuerySubmitted"/>
+            </NavigationView.AutoSuggestBox>
+            
+            <Frame x:Name="ContentFrame">
+                <WebView x:Name="webView" ContentLoading="webView_ContentLoading" NavigationCompleted="webView_NavigationCompleted" ContainsFullScreenElementChanged="webView_ContainsFullScreenElementChanged" ScriptNotify="webView_ScriptNotify" NavigationStarting="webView_NavigationStarting" DOMContentLoaded="webView_DOMContentLoaded" />
+            </Frame>
+        </NavigationView>
+            <TextBlock x:Name="texto" Visibility="Collapsed" HorizontalAlignment="Left" Height="22" Margin="10,412,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="543"/>
+        <!--TextBlock x:Name="AppTitle"
+                   xmlns:appModel="using:Windows.ApplicationModel"
+                   Text="{x:Bind appModel:Package.Current.DisplayName}"
+                   Style="{StaticResource CaptionTextBlockStyle}"
+                   IsHitTestVisible="False" Margin="50,11,0,0"/-->
+
+    </Grid>
+</Page>

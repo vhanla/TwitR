@@ -14,6 +14,14 @@ namespace WebHandler
         public event NotifyAppHandler NotifyAppEvent;
         private string username = "";
         private string locale = "";
+        // Handling routes
+        private bool ifHome;
+        private bool ifExplore;
+        private bool ifProfile;
+        private bool ifNotifications;
+        private bool ifMessages;
+        private bool ifCompose;
+        private bool ifSettings;
 
         public void setKeyCombination(int keyPress)
         {
@@ -54,6 +62,34 @@ namespace WebHandler
             }
         }
 
+        public void getRoute(string routeName, bool routePath)
+        {
+            switch (routeName){
+                case "home":
+                    ifHome = routePath; 
+                    break;
+                case "explore":
+                    ifExplore = routePath;
+                    break;
+                case "profile":
+                    ifProfile = routePath;
+                    break;
+                case "notifications":
+                    ifNotifications = routePath;
+                    break;
+                case "messages":
+                    ifMessages = routePath;
+                    break;
+                case "compose":
+                    ifCompose = routePath;
+                    break;
+                case "settings":
+                    ifSettings = routePath;
+                    break;
+            }
+            
+        }
+
         public string getUsername()
         {
             return username;
@@ -62,6 +98,42 @@ namespace WebHandler
         public string getLocale()
         {
             return locale;
+        }
+
+
+        public bool getHome
+        {
+            get { return ifHome; }
+        }
+
+        public bool getExplore
+        {
+            get { return ifExplore; }
+        }
+
+        public bool getProfile
+        {
+            get { return ifProfile; }
+        }
+
+        public bool getNotifications
+        {
+            get { return ifNotifications; }
+        }
+
+        public bool getMessages
+        {
+            get { return ifMessages; }
+        }
+
+        public bool getCompose
+        {
+            get { return ifCompose; }
+        }
+
+        public bool getSettings
+        {
+            get { return ifSettings; }
         }
     }
 }

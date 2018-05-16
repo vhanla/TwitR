@@ -8,7 +8,7 @@
     mc:Ignorable="d" >
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
-        <NavigationView x:Name="navView" Loaded="navView_Loaded" ItemInvoked="navView_ItemInvoked" OpenPaneLength="150" Visibility="Visible" AlwaysShowHeader="True">
+        <NavigationView x:Name="navView" Loaded="navView_Loaded" ItemInvoked="navView_ItemInvoked" OpenPaneLength="250" Visibility="Visible" AlwaysShowHeader="True">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Street" x:Name="iHome" Content="Home" Tag="home"/>
                 <NavigationViewItem Icon="Globe" Content="Explore" Tag="explore"/>
@@ -30,7 +30,13 @@
             </NavigationView.AutoSuggestBox>
             
             <Frame x:Name="ContentFrame">
-                <WebView x:Name="webView" ContentLoading="webView_ContentLoading" NavigationCompleted="webView_NavigationCompleted" ContainsFullScreenElementChanged="webView_ContainsFullScreenElementChanged" ScriptNotify="webView_ScriptNotify" NavigationStarting="webView_NavigationStarting" DOMContentLoaded="webView_DOMContentLoaded" />
+                <WebView x:Name="webView" ContentLoading="webView_ContentLoading" NavigationCompleted="webView_NavigationCompleted" ContainsFullScreenElementChanged="webView_ContainsFullScreenElementChanged" ScriptNotify="webView_ScriptNotify" NavigationStarting="webView_NavigationStarting" DOMContentLoaded="webView_DOMContentLoaded" >
+                    <WebView.KeyboardAccelerators>
+                        <KeyboardAccelerator
+                            Modifiers="Control"
+                            Key="Enter"/>
+                    </WebView.KeyboardAccelerators>
+                </WebView>
             </Frame>
         </NavigationView>
             <TextBlock x:Name="texto" Visibility="Collapsed" HorizontalAlignment="Left" Height="22" Margin="10,412,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" Width="543"/>

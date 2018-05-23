@@ -2,7 +2,13 @@
     x:Class="TwitR.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:TwitR"
-    RequestedTheme="Light">
+    xmlns:local="using:TwitR">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark" Source="TwitterDarkTheme.xaml"/> 
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
 
 </Application>

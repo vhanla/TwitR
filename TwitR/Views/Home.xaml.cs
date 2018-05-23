@@ -62,8 +62,37 @@ namespace TwitR
         private void getRoute(string routeName, string routePath)
         {
             string query = "NotifyApp.getRoute('" + routeName + "',document.querySelector('a[href=\"" + routePath + "\"]') != undefined)";
-            webView.InvokeScriptAsync("eval",
-                new[] { query });   
+            webView.InvokeScriptAsync("eval", new[] { query });   
+        }
+        private void getMode()
+        {
+            //string query = "if(document.cookie.match('(^|;)\\s*night_mode\\s*=\\s*([^;]+)')){NotifyApp.getMode(document.cookie.match('(^|;)\\s*night_mode\\s*=\\s*([^;]+)').pop())}";
+            //string query = "var dkmd = document.cookie.match('(^|;)\\s*night_mode\\s*=\\s*([^;]+)').pop();NotifyApp.getMode(dkmd)";
+            //webView.InvokeScriptAsync("eval", new[] { query });
+            var htt = new Windows.Web.Http.Filters.HttpBaseProtocolFilter();
+            var cm = htt.CookieManager;
+            var cc = cm.GetCookies(new Uri("https://mobile.twitter.com"));
+            foreach(var c in cc)
+            {
+                if(c.Name == "night_mode")
+                {
+                    if (c.Value == "1")
+                    {
+                        if(((Frame)Window.Current.Content).RequestedTheme != ElementTheme.Dark)
+                        {
+                            ((Frame)Window.Current.Content).RequestedTheme = ElementTheme.Dark;
+                        }
+                    }
+                    else
+                    {
+                        if(((Frame)Window.Current.Content).RequestedTheme == ElementTheme.Dark)
+                        {
+                            ((Frame)Window.Current.Content).RequestedTheme = ElementTheme.Light;
+                        }
+                    }    
+                }
+                
+            }
         }
 
         private void getRoutes(object sender, object e)
@@ -76,6 +105,8 @@ namespace TwitR
             getRoute("messages", "/message");
             getRoute("compose", "/compose/tweet");
             getRoute("settings", "/settins");
+            getMode();
+            
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)

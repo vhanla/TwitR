@@ -49,6 +49,8 @@ namespace TwitR
             // solo asegurarse de que la ventana está activa.
             if (rootFrame == null)
             {
+                SolidColorBrush brush = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 0, 255, 0));
+                this.Resources["brush"] = brush;
                 // Crear un marco para que actúe como contexto de navegación y navegar a la primera página.
                 rootFrame = new Frame();
 
